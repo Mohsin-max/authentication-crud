@@ -1,0 +1,50 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="column">
+
+            
+            <div class="alert alert-primary" role="alert" *ngIf="updateMessage">
+                <span class="fw-semibold">Product Updated Succesfully</span>
+              </div>
+
+            <form class="">
+
+                <h2 class="mb-4">Update Product</h2>
+
+                <div class="mb-3 w-100">
+                    <input type="text" class="form-control" name="productName" placeholder="Update Product Name"
+                        [(ngModel)]="singleProduct.productName">
+                </div>
+
+
+                <div class="mb-3 w-100">
+                    <input type="number" class="form-control" name="productPrice" placeholder="Update Product Price"
+                        [(ngModel)]="singleProduct.productPrice">
+                </div>
+
+                <div class="mb-3 w-100">
+                    <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                    <select class="form-select" aria-label="Default select example" name="productCategory"
+                        [(ngModel)]="singleProduct.productCategory">
+                        <option value="Electronics">Electronics</option>
+                        <option value="Vehicles">Vehicles</option>
+                        <option value="Furniture">Furniture</option>
+                        <option value="Beauty">Beauty</option>
+                        <option value="Sports">Sports</option>
+                        <option value="kids">kids</option>
+
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary" (click)="updateProduct()">Update Product</button>
+                <p>Go to <a routerLink="/admin">admin panel</a></p>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

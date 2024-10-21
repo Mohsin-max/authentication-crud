@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="column">
+            <form [formGroup]="addProductForm" (ngSubmit)="addProductFormSubmit()">
+
+                <h2 class="mb-4">Add Product</h2>
+
+                <div class="mb-3 w-100">
+                    <input type="text" class="form-control" placeholder="Product Name" formControlName="productName">
+                    <div *ngIf="productName.invalid && (productName.dirty || productName.touched)">
+                        <span *ngIf="productName.errors?.['required']">*product name required</span>
+                    </div>
+                </div>
+
+
+                <div class="mb-3 w-100">
+                    <input type="number" class="form-control" placeholder="Product Price"
+                        formControlName="productPrice">
+                    <div *ngIf="productPrice.invalid && (productPrice.dirty || productPrice.touched)">
+                        <span *ngIf="productPrice.errors?.['required']">*product price required</span>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-100">
+                    <!-- <input type="email" class="form-control" placeholder="Email"> -->
+                    <select class="form-select" aria-label="Default select example" formControlName="productCategory">
+                        <option [ngValue]="null" disabled selected>Chose Category</option>
+                        <option [ngValue]="'Electronics'">Electronics</option>
+                        <option [ngValue]="'Vehicles'">Vehicles</option>
+                        <option [ngValue]="'Furniture'">Furniture</option>
+                        <option [ngValue]="'Beauty'">Beauty</option>
+                        <option [ngValue]="'Sports'">Sports</option>
+                        <option [ngValue]="'kids'">kids</option>
+                    </select>
+                </div>
+
+
+                <div class="mb-3 w-100">
+                    <input type="file" class="form-control" placeholder="Select Image" (change)="onFileSelected($event)">
+                </div>
+
+
+                <button type="submit" class="btn btn-primary" [disabled]="addProductForm.invalid">Add Product</button>
+                <p>Go to <a routerLink="/admin">admin panel</a></p>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+<img src="Dehli ka zaiqa.png" alt="">

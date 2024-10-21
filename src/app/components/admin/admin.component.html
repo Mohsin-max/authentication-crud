@@ -1,0 +1,48 @@
+<app-admin-header></app-admin-header>
+
+<div class="container-fluid pb-5 mt-5">
+
+    <div class="row d-flex" style="margin-top: 130px;">
+        
+        <h2 class="text-center">ALL PRODUCTS</h2>
+        <h4>Total Products: {{productLength}}</h4>
+    </div>
+    
+    <hr>
+    <div class="row px-5">
+
+        <div class="column mt-5 d-flex justify-content-center flex-wrap gap-4">
+
+            <div class="emptyMessage mt-5" *ngIf="emptyMessage">
+                <h4>Store Is Empty</h4>
+            </div>
+
+            <div class="card text-center text-capitalize" style="width: 18rem;" *ngFor="let products of allProducts">
+
+                <div class="card-img">
+                    <img [src]="products.productImage" class="card-img-top" alt="{{products.productName}}">
+
+                </div>
+
+                <div class="card-body">
+
+                    <h5 class="card-title fs-3">{{products.productName}}</h5>
+
+                    <div class="texts mt-3">
+                        <p class="card-text"><span class="fw-semibold">Category:</span> {{products.productCategory}}</p>
+                        <p class="card-text"><span class="fw-semibold">Price:</span> {{products.productPrice}} rs</p>
+                    </div>
+
+                    <div class="action d-flex justify-content-center gap-3 mt-3">
+                        <a routerLink="/update/{{products.id}}" class="text-white text-decoration-none w-100"><button
+                                class="btn btn-primary w-100">Update</button></a>
+                        <button class="btn btn-danger w-100" (click)="deleteProductMethod(products.id)">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

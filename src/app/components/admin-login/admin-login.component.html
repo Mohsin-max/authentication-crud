@@ -1,0 +1,35 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="column">
+
+            <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+                <span class="fw-semibold">Incorrect Password</span>
+              </div>
+
+            <form [formGroup]="adminLoginForm" (ngSubmit)="adminLogin()">
+
+                <h2 class="mb-4">Admin Login</h2>
+
+                <div class="mb-3 w-100">
+                    <input [type]="isPasswordVissiable ? 'text' : 'password'" class="form-control"
+                        placeholder="Admin Password" formControlName="password">
+                    <i [ngClass]="isPasswordVissiable ? 'ri-eye-off-line': 'ri-eye-line'"
+                        (click)="toggelPasswordVisiablity()"></i>
+
+                        <div class="errorMessage" *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <span *ngIf="password.errors?.['required']">*password required</span>
+                        </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="adminLoginForm.invalid">Login</button>
+                <!-- <p>Don't have an account? <a routerLink="/sign-up">Sign up</a></p> -->
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

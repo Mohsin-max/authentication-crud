@@ -1,0 +1,52 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="column">
+
+            <div class="alert alert-primary" role="alert" *ngIf="accountCreateMessage">
+                <span class="fw-semibold">Account Created Succesfully</span>
+              </div>
+
+            <form [formGroup]="signUpForm" (ngSubmit)="signUpFormSubmit()">
+
+                <h2 class="mb-4">Sign Up</h2>
+
+                <div class="mb-3 w-100">
+                    <input type="text" class="form-control" placeholder="Username" name="username"
+                        formControlName="username">
+                    <div class="errorMessage" *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <span *ngIf="username.errors?.['required']">*username required</span>
+                        <span *ngIf="username.errors?.['minlength']">*username must be 4 characters long</span>
+                        <span *ngIf="username.errors?.['pattern']">*username invalid</span>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-100">
+                    <input type="email" class="form-control" placeholder="Email" name="email" formControlName="email">
+                    <div class="errorMessage" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <span *ngIf="email.errors?.['required']">*email required</span>
+                        <span *ngIf="email.errors?.['email']">*email invalid</span>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-100">
+                    <input [type]="isPasswordVissiable ? 'text' : 'password'" class="form-control w-100"
+                        placeholder="Password" name="password" formControlName="password">
+                    <i [ngClass]="isPasswordVissiable ? 'ri-eye-line': 'ri-eye-off-line'"
+                        (click)="toggelPasswordVisiablity()"></i>
+                    <div class="errorMessage" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <span *ngIf="password.errors?.['required']">*password required</span>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid || signUpForm.hasError('passwordMismatch')">Sign Up</button>
+                <p>Already have an account? <a routerLink="/login">Login</a></p>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

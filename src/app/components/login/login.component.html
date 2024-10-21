@@ -1,0 +1,41 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="column">
+
+            <div class="alert alert-danger" role="alert" *ngIf="loginFailMessage">
+                <span class="fw-semibold">Invalid User</span>
+              </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="loginFormSubmit()">
+
+                <h2 class="mb-4">Login</h2>
+
+                <div class="mb-3 w-100">
+                    <input type="text" class="form-control" placeholder="Username" formControlName="username">
+                    <div class="errorMessage" *ngIf="username.invalid && (username.dirty || username.touched)">
+                        <span *ngIf="username.errors?.['required']">*username required</span>
+                    </div>
+                </div>
+
+                <div class="mb-3 w-100">
+                    <input [type]="isPasswordVisiable ? 'text':'password'" class="form-control" placeholder="Password"
+                        formControlName="password">
+                    <div class="errorMessage" *ngIf="password.invalid && (password.dirty || password.touched)">
+                        <span *ngIf="password.errors?.['required']">*password required</span>
+                    </div>
+
+                    <i [class]="isPasswordVisiable ? 'ri-eye-off-line' : 'ri-eye-line'"
+                        (click)="togglePasswordVisiablity()"></i>
+                </div>
+
+                <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Login</button>
+                <p>Don't have an account? <a routerLink="/sign-up">Sign up</a></p>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>

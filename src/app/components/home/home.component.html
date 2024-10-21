@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="container-fluid pb-5">
+
+    <div class="row mt-5">
+
+        <h2 class="fw-bold text-primary text-center">ALL PRODUCTS</h2>
+
+        <select name="" id="" style="margin-left: 20px; width: 200px;" [(ngModel)]="category" (change)="filterProductsByCategory()">
+
+            <option [ngValue]="'All'" selected>All</option>
+            <option [ngValue]="'Electronics'">Electronics</option>
+            <option [ngValue]="'Vehicles'">Vehicles</option>
+            <option [ngValue]="'Furniture'">Furnitures</option>
+            <option [ngValue]="'Beauty'">Beauty</option>
+            <option [ngValue]="'Sports'">Sports</option>
+            <option [ngValue]="'kids'">Kids</option>
+
+        </select>
+
+    </div>
+
+    <hr>
+
+    <div class="row px-5">
+
+        <div class="column mt-5 d-flex justify-content-center flex-wrap gap-4">
+
+            <div class="emptyMessage mt-5" *ngIf="emptyMessage">
+                <h4>Store Is Empty</h4>
+            </div>
+
+            <div class="card text-center text-capitalize" style="width: 18rem;"
+                *ngFor="let products of filterProducts | paginate:{itemsPerPage:pSize, currentPage:p};index as i">
+
+                <div class="card-img">
+
+                    <img [src]="products.productImage" class="card-img-top" alt="{{products.productName}}">
+                </div>
+
+
+                <div class="card-body">
+                    <h5 class="card-title fs-3">{{products.productName}}</h5>
+
+                    <div class="texts mt-3">
+                        <p class="card-text"><span class="fw-semibold">category:</span> {{products.productCategory}}</p>
+                        <p class="card-text"><span class="fw-semibold">price:</span> {{products.productPrice}} rs</p>
+                    </div>
+
+                    <div class="action d-flex justify-content-center gap-3 mt-3">
+                        <a href="#"><button class="btn btn-primary w-100">Buy Product</button></a>
+                        <button class="btn btn-primary w-20" (click)="addCart(products)"><i
+                                class="ri-shopping-cart-line"></i></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div *ngIf="totalProducts > pSize">
+
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+</div>
