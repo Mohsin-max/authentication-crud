@@ -26,7 +26,7 @@ export class AddProductComponent {
     return this.addProductForm.controls['productName'];
 
   }
-
+  
 
   get productPrice() {
 
