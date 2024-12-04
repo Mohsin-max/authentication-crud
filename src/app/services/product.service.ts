@@ -10,7 +10,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  public baseUrl = "http://localhost:3000/products";
+  // public baseUrl = "http://localhost:3000/products";
+  public baseUrl = "https://gainful-stealth-neon.glitch.me/products";
 
   postProduct(productData: Product): Observable<Product> {
 

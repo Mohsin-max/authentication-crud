@@ -10,7 +10,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private baseUrl: any = "http://localhost:3000/users";
+  // private baseUrl: any = "http://localhost:3000/users";
+  private baseUrl: any = "https://gainful-stealth-neon.glitch.me/users";
 
   postUserData(userData: User): Observable<User> {
 
